@@ -32,12 +32,10 @@ from influxdb import InfluxDBClient
 
 
 # clés téléinfo
-#INT_MESURE_KEYS = ['BASE', 'IMAX', 'HCHC', 'IINST', 'PAPP', 'ISOUSC', 'ADCO', 'HCHP']
-# modif 21/09
 INT_MESURE_KEYS = ['BASE', 'IMAX', 'PMAX', 'IMAX1', 'IMAX2', 'IMAX3', 'IINST1', 'IINST2','IINST3', 'HCHC', 'PAPP', 'ISOUSC', 'ADCO', 'HCHP']
 
 # création du logguer
-logging.basicConfig(filename='teleinfo_releve.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
+logging.basicConfig(filename='teleinfo_releve.log', level=logging.INFO, format='%(asctime)s %(message)s')
 logging.info("Teleinfo starting..")
 
 # connexion a la base de données InfluxDB
@@ -129,7 +127,7 @@ def main():
 
                     # ajout timestamp pour debugger
                     trame["timestamp"] = int(time_measure)
-                    logging.debug(trame)
+                    logging.info(trame)
 
                     trame = dict()  # on repart sur une nouvelle trame
             except Exception as e:
